@@ -1,0 +1,5 @@
+package awesomeProject
+
+func newAPI() {
+
+}

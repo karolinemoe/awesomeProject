@@ -1,0 +1,38 @@
+run:
+  concurrency: 16
+  tests: false  
+linters-settings:
+  lll:
+    line-length: 130
+    tab-width: 1
+linters:
+  enable:
+    - deadcode
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - varcheck
+    - bodyclose
+    - depguard
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - revive
+    - gosec
+    - lll
+    - misspell
+    - nakedret
+    - prealloc
+    - exportloopref
+    - stylecheck
+    - unconvert
+    - unparam
+    - whitespace

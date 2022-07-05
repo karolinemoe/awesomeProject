@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mssql:
+    build:
+      context: .
+      dockerfile: Dockerfile.testdb
+    container_name: vippsnummer_mssql
+    ports:
+      - "1433:1433"
+    networks:
+      - vippsnummer-network

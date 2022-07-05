@@ -1,0 +1,16 @@
+FROM golang:1.18.1 as testdb
+
+WORKDIR /src
+RUN git clone https://github.com/microsoft/go-sqlcmd.git && \
+    cd go-sqlcmd && \
+    go build ./cmd/sqlcmd
+
+FROM mcr.microsoft.com/azure-sql-edge:latest
+
+ENV ACCEPT_EULA=Y
+ENV SA_PASSWORD=rV&&X5w5c8
+
+# Copy over the compiled sqlcmd. Doesn't exist in azure-sql-edge in the ARM64 version
+COPY --from=testdb --chown=mssql:root /src/go-sqlcmd/sqlcmd /usr/bin/sqlcmd
+
+RUN (/opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Service Broker manager has started"

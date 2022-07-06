@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.testdb
-    container_name: vippsnummer_mssql
+    container_name: test_mssql
     ports:
       - "1433:1433"
-    networks:
-      - vippsnummer-network

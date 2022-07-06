@@ -19,7 +19,7 @@ import (
 	"github.com/Azure/go-autorest/autorest/azure"
 )
 
-var gitSHA string //nolint
+var gitSHA string //nolint keyvault
 
 func main() {
 	var one int
@@ -29,6 +29,7 @@ func main() {
 	var five bool
 	var six interface{}
 	var seven any
+	var eight *string
 
 	// logging - til for debugging
 	log := logrus.New()
@@ -44,6 +45,7 @@ func main() {
 	logger.Info("Hello world")
 	logger.Error("Something went wrong, help!")
 	logger.Fatal("I'm dying")
+	logger.Panicf("Umf..")
 
 	// prometheus/grafana - til for overvåking
 	go startPrometheus(logger)
@@ -56,7 +58,7 @@ func main() {
 	var connStr string
 	switch os.Getenv("ENV") {
 	case "dev":
-		connStr = "sqlserver://localhost:1433?user id=SA&password=rV%26%26X5w5c8&database=vippsnummer"
+		connStr = "sqlserver://localhost:1433?user id=SA&password=rV%26%26X5w5c8&database=test"
 	default:
 		connStr = getFromKeyvault(logger)
 	}
@@ -99,6 +101,18 @@ func main() {
 	// 5. Duplisering kan være bedre om det blir uleselig å lage egne funksjoner
 
 	// 6. TDD, prøv det, gjør koden mye tryggere
+
+	// 7. Azure Devops Pipelines?
+
+	// 8. Ingen map funksjon, må bruke for løkker
+	list := []int{1, 2, 3}
+	for _, i := range list {
+		list = append(list, i+1)
+	}
+
+	for i := 0; i <= 10; i++ {
+		fmt.Println(i)
+	}
 }
 
 func startPrometheus(l *logrus.Entry) {
